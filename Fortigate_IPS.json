@@ -1,0 +1,33 @@
+{
+    "id": "ec6ee035-bc30-4f75-ba06-d8fdfb6f6e9f",
+    "version": "1.1.0",
+    "labels": [
+        "LABEL_THREAT",
+        "CustomLabel"
+    ],
+    "remediationName": "REMED_USER_INTERACTION",
+    "anomalyType": "ANOTYP_CUSTOM",
+    "isActive": "True",
+    "severityName": "SEV_LOW",
+    "productLine": "LAN or WLAN",
+    "statements": [
+        {
+            "rules": [
+                {
+                    "ruleNegate": "",
+                    "ruleKey": "$msg",
+                    "ruleOperator": "contains",
+                    "ruleValue": "type=\"utm\"",
+                    "ruleType": "oppositeOfNot"
+                },
+                {
+                    "ruleNegate": "",
+                    "ruleKey": "$msg",
+                    "ruleOperator": "contains",
+                    "ruleValue": "subtype=\"ips\"",
+                    "ruleType": "oppositeOfNot"
+                }
+            ]
+        }
+    ]
+}

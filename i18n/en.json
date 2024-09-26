@@ -1,0 +1,25 @@
+{
+    "friendly_name": "Fortigate IPS",
+    "description": "A notification is sent when an attack is detected by the FortiGate IPS. The notification suggests a remediation action (blocking the attacker), which triggers a syslog to OmniVista. OmniVista then uses its quarantine manager feature to directly isolate the attacker on the managed OmniSwitches and Stellar Access Points.",
+    "remed_automated_description": "Intrusion detected.\nAuto remediation is to block client",
+    "Fortigate_IPS": {
+        "anoText": "Intrusion alert: signature-based attack detected at firewall {0} / {1}.",
+        "detText": "Details:\n\t- LogID : {0}\n\t- Source IP : {1}\n\t- Destination IP : {2}\n\t- User: {3}\n\t- Action : {4}\n\t- Reason : {5}",
+        "recText": "If this is a recurring alarm, we recommend to block the client's network access immedidately.",
+        "action": "true",
+        "defChoice": "Block",
+        "ignore": "Ignore",
+        "disable": "",
+        "remember": "Remember my decision above.",
+        "altText": "",
+        "altChoice": "",
+        "recorded_details": "none"
+    },
+    "notify_more": {
+        "more_logs_qmr": "Device {} has been added into the OV Banned devices list",
+	"more_logs_blocklist": "Device {} has been added into the OV WLAN Block List",
+        "more_logs_det": "Details:\n\t- LogID : {}\n\t- Source IP : {}\n\t- Destination IP : {}",
+        "more_logs_rec": "You can check the status in OV 2500 Security -> Quarantine Manager -> Banned page",
+        "log_access": "Access OmniVista 2500 Quarantine Manager"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "server"    : "192.168.76.253",
+    "port"      : 514,
+    "type"      : "OV2500",
+    "username"  : "admin",
+    "password"  : "0Trust2023!",
+    "appID"     :  ""
+}
