@@ -163,6 +163,14 @@ def ban_stellar_wifi_client(exec_id, ctx, logger):
 
     ov_header["Cookie"] = ov_login["cookies"]
 
+    #If OmniVista 2500 version higher then 4.9R1 use Quarantine Manager
+    about = send_request("GET", f"https://{ovserver}/api/about", headers={"Cookie": ov_login["cookies"]}, timeout=timeout, verify=verify_certs)
+    about_json = json.loads(about["text"])
+    ovversion = about_json["revision"]
+    logger.info("{0} - OV Version: {1}".format(exec_id, ovversion))
+    if int(ovversion.split(".")[0]) >= 4 and int(ovversion.split(".")[1].split("R")[0]) >= 9:
+        return False
+
     client_query = {
         "pageNumber":1,
         "pageSize":1000,
@@ -223,7 +231,7 @@ def ban_stellar_wifi_client(exec_id, ctx, logger):
         "memList":[clientMac],
         "method":"add",
         "agingTime":None,
-        "reason":"OmniVista Network Advisor secured your network from {} on AP {connectedAP}"[:100].format(ctx["srcip"])
+        "reason":"OmniVista Network Advisor secured your network from {0} on AP {1}"[:100].format(ctx["srcip"],connectedAP)
     }
     add_to_blocklist = send_request("POST", f"https://{ovserver}/api/wma/wips/clientList/edit", headers=ov_header, payload=blocklist_entry, timeout=timeout, verify=verify_certs)
     #print(add_to_blocklist["status_code"], add_to_blocklist["reason"], "OV Add Client to Blocklist")
@@ -231,6 +239,7 @@ def ban_stellar_wifi_client(exec_id, ctx, logger):
     # Logout from OmniVista API
     ov_logout = send_request("GET", f"https://{ovserver}/api/logout", headers=ov_header, timeout=timeout, verify=verify_certs)
     #print(ov_logout.status_code, ov_logout.reason, "OV Logout")
+    return ovserver
 
 def send_notification(body,logger):
     # Send notification to the backend
@@ -366,7 +375,7 @@ def remediation(selected_decision, exec_id, ano_ctx, cld, logger):
         # Create a QMR rule in OV2500
         # Send a syslog to OV2500 QMR to quarantine the device
         #
-        # If the client is not found in Wi-Fi clients, process via OV QMR
+        # If the client is not found in Wi-Fi clients or OV2500 version is higher then 4.9R1, process via OV QMR
         ovserver = ban_stellar_wifi_client(exec_id,ctx,logger)
         # ovserver is either set
         # ... then client is a Wi-Fi client
