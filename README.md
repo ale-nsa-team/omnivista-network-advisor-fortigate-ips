@@ -6,3 +6,12 @@ This custom anomaly for OmniVista Network Advisor has been created to integrate 
 
 ## Description
 When the FortiGate IPS detects an attack, a notification is sent that includes a suggested remediation action (blocking the attacker). This action generates a syslog message or a REST call to OmniVista. OmniVista then leverages its Quarantine Manager feature to isolate the attacker on managed OmniSwitches or the Blocklist feature to isolate the attacker on managed Stellar Access Points.
+
+## Requirements
+- **OmniVista Network Advisor** version **1.4** or higher is required for this custom anomaly to work correctly.
+
+## Installation
+1. Download the archive from the following link: [Fortigate_IPS.zip](https://github.com/ale-nsa-team/omnivista-network-advisor-fortigate-ips/releases/download/v1.0.0/Fortigate_IPS.zip)
+2. Open **OmniVista Network Advisor** and navigate to the **Anomaly Monitoring** section.
+3. Click on the green **Import Custom Anomaly** button.
+4. Select the downloaded archive (`Fortigate_IPS.zip`) and import it into OmniVista Network Advisor.
