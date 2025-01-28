@@ -9,7 +9,7 @@ When the FortiGate IPS detects an attack, a notification is sent that includes a
 
 ## Requirements
 - **OmniVista Network Advisor** version **1.4** or higher is required for this custom anomaly to work correctly.
-- **OmniVista Network 2500**.
+- **OmniVista 2500**.
 
 ## Installation
 1. Download the archive from the following link: [Fortigate_IPS.zip](https://github.com/ale-nsa-team/omnivista-network-advisor-fortigate-ips/releases/download/v1.0.0/Fortigate_IPS.zip)
